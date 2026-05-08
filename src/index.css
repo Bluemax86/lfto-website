@@ -1,0 +1,216 @@
+:root {
+  /* Surface & Backgrounds */
+  --surface: #f9f9f9;
+  --surface-dim: #dadada;
+  --surface-bright: #f9f9f9;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f3f3f3;
+  --surface-container: #eeeeee;
+  --surface-container-high: #e8e8e8;
+  --surface-container-highest: #e2e2e2;
+  --on-surface: #1a1c1c;
+  --on-surface-variant: #404848;
+  --inverse-surface: #2f3131;
+  --inverse-on-surface: #f1f1f1;
+  --outline: #717978;
+  --outline-variant: #c0c8c8;
+  --surface-tint: #3b6566;
+  --background: #f9f9f9;
+  --on-background: #1a1c1c;
+  
+  /* Primary (Ocean Deep) */
+  --primary: #001c1d;
+  --on-primary: #ffffff;
+  --primary-container: #003334;
+  --on-primary-container: #719c9d;
+  --inverse-primary: #a3cfcf;
+  
+  /* Secondary (Gold Leaf) */
+  --secondary: #D4AF37;
+  --on-secondary: #000000;
+  --secondary-container: #B8860B;
+  --on-secondary-container: #000000;
+  
+  /* Spacing */
+  --unit: 8px;
+  --gutter: clamp(16px, 4vw, 32px);
+  --margin-edge: clamp(16px, 5vw, 64px);
+  --section-gap: clamp(64px, 10vw, 128px);
+  --container-max: 1440px;
+}
+
+body {
+  margin: 0;
+  background-color: var(--background);
+  color: var(--on-background);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Typography Scale */
+h1, .display-xl {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(36px, 6vw, 64px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: clamp(0.1em, 1.5vw, 0.25em);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h2, .headline-lg {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(28px, 5vw, 48px);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: clamp(0.1em, 1.5vw, 0.2em);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+h3, .headline-md {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(24px, 4vw, 32px);
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: clamp(0.05em, 1vw, 0.2em);
+  text-transform: uppercase;
+  margin: 0;
+}
+
+p, .body-lg {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.body-md {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 2;
+  letter-spacing: 0.05em;
+  margin: 0;
+}
+
+.label-caps {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.0;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+}
+
+/* Layout Utilities */
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--margin-edge);
+}
+
+.section-padding {
+  padding-top: var(--section-gap);
+  padding-bottom: var(--section-gap);
+}
+
+/* Glass Panel */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(212, 175, 55, 0.3); /* Delicate gold hint border instead of solid gradient to be more elegant */
+  position: relative;
+  border-radius: 0; /* Sharp edges */
+  padding: 64px;
+}
+
+.gold-text {
+  background: linear-gradient(to right, #D4AF37, #B8860B);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  display: inline-block;
+}
+
+/* Thin Divider */
+.thin-divider {
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(to right, transparent, var(--outline-variant), transparent);
+  margin: 32px 0;
+}
+
+/* Button */
+.lfto-btn {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1.0;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  padding: 24px 48px;
+  border: none;
+  cursor: pointer;
+  transition: background-color 500ms ease, color 500ms ease;
+  border-radius: 0;
+}
+
+.lfto-btn-primary {
+  background-color: var(--secondary);
+  color: var(--on-secondary);
+  box-shadow: 0 4px 14px 0 rgba(212, 175, 55, 0.2);
+}
+
+.lfto-btn-primary:hover:not(:disabled) {
+  background-color: var(--secondary-container);
+  color: var(--on-secondary);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.3);
+}
+
+.lfto-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.lfto-btn-primary:disabled {
+  background-color: var(--surface-dim);
+  color: var(--on-surface-variant);
+  box-shadow: none;
+}
+
+
+/* Input */
+.lfto-input {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--outline-variant);
+  padding: 16px 0;
+  color: var(--on-surface);
+  width: 100%;
+  outline: none;
+  transition: border-bottom-color 300ms ease;
+  text-align: center;
+}
+
+.lfto-input::placeholder {
+  color: var(--outline);
+}
+
+.lfto-input:focus {
+  border-bottom-color: var(--primary);
+}
