@@ -204,7 +204,7 @@ p, .body-lg {
   width: 100%;
   outline: none;
   transition: border-bottom-color 300ms ease;
-  text-align: center;
+  text-align: left;
 }
 
 .lfto-input::placeholder {

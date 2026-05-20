@@ -4,6 +4,12 @@ import { Leaf, Droplets, Shield } from 'lucide-react';
 import FishSwarm from './FishSwarm';
 import WaitlistInnerCircle from './WaitlistInnerCircle';
 import FeedbackPage from './FeedbackPage';
+import AdminLayout from './components/admin/AdminLayout';
+import AdminDashboard from './components/admin/AdminDashboard';
+import InfluencerTracker from './components/admin/InfluencerTracker';
+import TaskBoard from './components/admin/TaskBoard';
+import AdminLoginPage from './components/admin/AdminLoginPage';
+import { AuthProvider, ProtectedRoute } from './components/admin/ProtectedRoute';
 
 // --- Scroll Management ---
 
@@ -167,23 +173,33 @@ const IngredientItem: React.FC<{ icon: React.ReactNode; title: string; descripti
 
 function App() {
   return (
-    <div style={{ minHeight: '100vh' }}>
-      <ScrollToTop />
-      <FishSwarm />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/waitlist" element={<WaitlistInnerCircle />} />
-        <Route path="/feedback" element={<FeedbackPage />} />
-      </Routes>
-      <footer style={{ padding: '64px 0', backgroundColor: 'var(--primary)', color: 'var(--on-primary)', textAlign: 'center' }}>
-        <p className="label-caps" style={{ marginBottom: '24px' }}>© 2027 Lotion From The Ocean. All Rights Reserved.</p>
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '32px' }}>
-          <Link to="/" style={{ color: 'white', textDecoration: 'none', fontSize: '11px' }} className="label-caps">Home</Link>
-          <Link to="/waitlist" style={{ color: 'white', textDecoration: 'none', fontSize: '11px' }} className="label-caps">Waitlist</Link>
-          <Link to="/feedback" style={{ color: 'white', textDecoration: 'none', fontSize: '11px' }} className="label-caps">Share Feedback</Link>
-        </div>
-      </footer>
-    </div>
+    <AuthProvider>
+      <div style={{ minHeight: '100vh' }}>
+        <ScrollToTop />
+        <FishSwarm />
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/waitlist" element={<WaitlistInnerCircle />} />
+          <Route path="/feedback" element={<FeedbackPage />} />
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          
+          {/* Admin Routes */}
+          <Route path="/admin" element={<ProtectedRoute><AdminLayout /></ProtectedRoute>}>
+            <Route index element={<AdminDashboard />} />
+            <Route path="influencers" element={<InfluencerTracker />} />
+            <Route path="tasks" element={<TaskBoard />} />
+          </Route>
+        </Routes>
+        <footer style={{ padding: '64px 0', backgroundColor: 'var(--primary)', color: 'var(--on-primary)', textAlign: 'center' }}>
+          <p className="label-caps" style={{ marginBottom: '24px' }}>© 2027 Lotion From The Ocean. All Rights Reserved.</p>
+          <div style={{ display: 'flex', justifyContent: 'center', gap: '32px' }}>
+            <Link to="/" style={{ color: 'white', textDecoration: 'none', fontSize: '11px' }} className="label-caps">Home</Link>
+            <Link to="/waitlist" style={{ color: 'white', textDecoration: 'none', fontSize: '11px' }} className="label-caps">Waitlist</Link>
+            <Link to="/feedback" style={{ color: 'white', textDecoration: 'none', fontSize: '11px' }} className="label-caps">Share Feedback</Link>
+          </div>
+        </footer>
+      </div>
+    </AuthProvider>
   );
 }
 
